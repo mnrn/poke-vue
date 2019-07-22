@@ -47,13 +47,11 @@ export default class Calculator {
     // 入力値が要件を満たすか確認して、だめならばアーリーアウトする。
     const required = this.require()
     if (isLeft(required)) {
-      return left(
-        pipe(
+      return left(pipe(
           required,
           swap,
           getOrElse(() => '')
-        )
-      )
+      ))
     }
 
     const base = [this.stats['hp'], this.stats['attack'], this.stats['defence'],
