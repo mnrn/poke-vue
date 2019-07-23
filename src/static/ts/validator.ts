@@ -1,9 +1,8 @@
 import { Option, none } from 'fp-ts/lib/Option'
-import { getSemigroup, NonEmptyArray, fromArray, } from 'fp-ts/lib/NonEmptyArray'
+import { getSemigroup, NonEmptyArray, fromArray } from 'fp-ts/lib/NonEmptyArray'
 import { getValidation, Either, left, right, map, fromOption, swap } from 'fp-ts/lib/Either'
-import { pipe } from 'fp-ts/lib/pipeable';
-import { sequenceT } from 'fp-ts/lib/Apply';
-
+import { pipe } from 'fp-ts/lib/pipeable'
+import { sequenceT } from 'fp-ts/lib/Apply'
 
 export function check (checklist: string[], stats: number[], lv: number, individuals: number[], efforts: number[], effects: string[])
 : Either<NonEmptyArray<string>, Option<never>> {
@@ -52,7 +51,7 @@ export function checkUseful (checklist: string[], lv: number, individuals: numbe
       validation.push(list[i] + 'の努力値に無駄があります！')
     }
   }
-  return pipe (
+  return pipe(
     validation,
     fromArray,
     fromOption(() => none),
