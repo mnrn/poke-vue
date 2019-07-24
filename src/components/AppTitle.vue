@@ -20,15 +20,17 @@ export default class AppTitle extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-#app-title {
-  display: flex;
-  justify-content: center;
-  h1 {
-    text-align: center;
-    width: auto;
-  }
-  .version-info {
-    padding: 38px 20px;
-  }
-}
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap')
+
+#app-title
+  display: flex
+  justify-content: center
+
+  h1
+    text-align: center
+    width: auto
+
+  .version-info
+    font-family: 'Ubuntu Mono', monospace
+    padding: 38px 20px
 </style>

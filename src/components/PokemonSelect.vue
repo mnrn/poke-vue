@@ -37,9 +37,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class PokemonSelect extends Vue {
-  @Prop() private selected: string = ''
-  @Prop() private names: string[] = []
-  @Prop() private lv: number = 50
+  @Prop() private selected!: string
+  @Prop() private names!: string[]
+  @Prop() private lv!: number
 
   private calc () {
     this.$emit('select-event')
