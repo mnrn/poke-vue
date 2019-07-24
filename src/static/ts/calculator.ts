@@ -3,7 +3,7 @@ import { Either, left, right, map } from 'fp-ts/lib/Either'
 import { pipe } from 'fp-ts/lib/pipeable'
 import BaseStats from '@/static/ts/stats'
 
-export function valid (stats: BaseStats, lv: number, individuals: number[], efforts: number[], effects: string[]): Either<string, Option<never>> {
+export function suspicion (stats: BaseStats, lv: number, individuals: number[], efforts: number[], effects: string[]): Either<string, Option<never>> {
   if (lv !== 50 && lv !== 100) {
     return left('Lvは50または100である必要があります！')
   }
@@ -30,7 +30,7 @@ export function valid (stats: BaseStats, lv: number, individuals: number[], effo
 
 export function exec (stats: BaseStats, lv: number, individuals: number[], efforts: number[], effects: string[]): Either<string, number[]> {
   return pipe(
-    valid(stats, lv, individuals, efforts, effects),
+    suspicion(stats, lv, individuals, efforts, effects),
     map(() => {
       const base = [stats['hp'], stats['attack'], stats['defence'],
         stats['spAttack'], stats['spDefence'], stats['speed']]
