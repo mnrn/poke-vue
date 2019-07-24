@@ -50,6 +50,7 @@ export default class PokemonStats extends Vue {
   private efforts: number[] = [...Array(6)].fill(0)
   private effects: string[] = [...Array(6)].fill('-')
   private result: number[] = [...Array(6)].fill(0)
+
   private checklist: string[] = []
   private invalids: string[] = []
 
