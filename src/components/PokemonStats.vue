@@ -8,6 +8,7 @@
       <validation-checker @checked-event="checked"/>
     </div>
     <warning-box :invalids="invalids"/>
+    <info-board/>
   </div>
 </template>
 
@@ -22,6 +23,7 @@ import PokemonSelect from './PokemonSelect.vue'
 import PokemonStatsInputTable from './PokemonStatsInputTable.vue'
 import ValidationChecker from './ValidationChecker.vue'
 import WarningBox from './WarningBox.vue'
+import InfoBoard from './InfoBoard.vue'
 
 import BaseStats from '../static/ts/stats'
 import { exceptShedinja } from '../static/ts/utility'
@@ -39,7 +41,8 @@ export type CheckList = typeof checkList
     PokemonSelect,
     PokemonStatsInputTable,
     ValidationChecker,
-    WarningBox
+    WarningBox,
+    InfoBoard
   }
 })
 export default class PokemonStats extends Vue {

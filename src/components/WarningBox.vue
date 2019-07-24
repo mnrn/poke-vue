@@ -23,22 +23,20 @@ export default class WarningBox extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.warning-box {
-  display: table;
-  padding: 0.5em 1em;
-  margin: 30px auto;
-  box-sizing: border-box;
+.warning-box
+  display: table
+  padding: 0.5em 1em
+  margin: 30px auto
+  box-sizing: border-box
 
-  font-weight: bold;
-  color: #ff7d6e;/*文字色*/
-  background: #ffebe9;
-  border: solid 3px #ff7d6e;/*線*/
-  border-radius: 10px;/*角の丸み*/
+  font-weight: bold
+  color: #ff7d6e/*文字色*/
+  background: #ffebe9
+  border: solid 3px #ff7d6e/*線*/
+  border-radius: 10px/*角の丸み*/
 
-  div {
-    display: table-cell;
-    text-align: left;
-    vertical-align: middle;
-  }
-}
+  div
+    display: table-cell
+    text-align: left
+    vertical-align: middle
 </style>
