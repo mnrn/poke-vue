@@ -6,11 +6,11 @@
       <tbody>
         <tr v-for="(stat, index) in stats" :key="index">
           <th v-cloak>{{stat}}</th>
-          <td><input v-model.number="result[index]" type="number" required="true" min="1" max="999" step="1" readonly></td>
-          <td><input v-model.number="efforts[index]" type="number" required="true" min="0" max="252" step="4" @change="updateEffort($event.target.valueAsNumber, index)"></td>
-          <td><input v-model.number="individuals[index]" type="number" required="true" min="0" max="31" step="1" @change="updateIndividual($event.target.valueAsNumber, index)"></td>
+          <td><input v-model.number="result[index]" type="number" required="true" min="1" max="999" step="1" :class="label[index]" readonly></td>
+          <td><input v-model.number="efforts[index]" type="number" required="true" min="0" max="252" step="4" :class="'effort-' + label[index]" @change="updateEffort($event.target.valueAsNumber, index)"></td>
+          <td><input v-model.number="individuals[index]" type="number" required="true" min="0" max="31" step="1" :class="'individual-' + label[index]" @change="updateIndividual($event.target.valueAsNumber, index)"></td>
           <td v-if="index!==0">
-            <select name="effects" size="1" v-model="effects[index]" required="true" @change="updateEffect($event.target.value, index)">
+            <select name="effects" size="1" v-model="effects[index]" required="true" :class="'effect-' + label[index]" @change="updateEffect($event.target.value, index)">
               <option v-for="(effect, j) in ['-', '↑', '↓']" :key="j">{{effect}}</option>
             </select>
           </td>
@@ -30,6 +30,7 @@ export default class PokemonStatsInputTable extends Vue {
   @Prop() private individuals!: number[]
   @Prop() private effects!: string[]
   @Prop() private result!: number[]
+  private readonly label = ['hp', 'attack', 'defence', 'sp-attack', 'sp-defence', 'speed']
 
   private updateEffort (effort: number, index: number) {
     const newEfforts = [...this.efforts.slice(0, index), effort, ...this.efforts.slice(index + 1)]

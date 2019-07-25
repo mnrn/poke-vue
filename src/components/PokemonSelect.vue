@@ -2,7 +2,7 @@
   <div class="pokemon-select">
     <div class="pokemon-name-select">
       <span class="name">ポケモン:</span>
-      <input
+      <input class="pokemon-name-input"
         v-model="pokeSelected"
         list="pokemon-name"
         type="text"
@@ -19,7 +19,7 @@
     <div class="pokemon-lv-select">
       <span class="lv">Lv:</span>
       <select
-        name="lv"
+        class="pokemon-lv"
         size="1"
         type="number"
         v-model.number="pokeLv"
