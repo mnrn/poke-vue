@@ -1,9 +1,9 @@
 <template>
-  <div id="validation-checker">
+  <div class="validation-checker">
     <fieldset>
       <legend>チェックボックスです</legend>
       <div v-for="(check, index) in checklist" :key="index">
-        <input type="checkbox" :id="check.id" name="check" v-model="checks[index]"/>
+        <input type="checkbox" :id="check.id" name="check" :class="'check-'+check.id" v-model="checks[index]"/>
         <label :for="check.id" v-cloak>{{check.label}}</label>
       </div>
     </fieldset>
@@ -14,12 +14,10 @@
 import { Watch, Component, Vue } from 'vue-property-decorator'
 import checkList from '@/assets/data/checklist.json'
 export type CheckList = typeof checkList
-
 @Component
 export default class ValidationChecker extends Vue {
   private checklist: CheckList = checkList
   private checks: boolean[] = [...Array(checkList.length)].fill(false)
-
   @Watch('checks')
   private watchChecks () {
     this.$emit('checked-event', this.checklist, this.checks)
@@ -28,10 +26,8 @@ export default class ValidationChecker extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-#validation-checker {
+.validation-checker
   text-align: left;
-  fieldset {
-    display: inline;
-  }
-}
+  fieldset
+    display: inline
 </style>

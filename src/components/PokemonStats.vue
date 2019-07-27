@@ -121,17 +121,14 @@ export default class PokemonStats extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-#pokemon-stats {
-  .pokemon-stats-user-select {
-    display: flex;
-    justify-content: center;
-    margin-top: -15px;
+#pokemon-stats
+  .pokemon-stats-user-select
+    display: flex
+    justify-content: center
+    margin-top: -15px
 
-    .pokemon-stats-monitor {
-      display: table;
-      text-align: center;
-      margin: 50px 100px;
-    }
-  }
-}
+    .pokemon-stats-monitor
+      display: table
+      text-align: center
+      margin: 50px 100px
 </style>
