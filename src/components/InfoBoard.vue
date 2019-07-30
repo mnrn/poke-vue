@@ -26,16 +26,6 @@ export default class InfoBoard extends Vue {
   box-shadow: 1px 1px 4px rgba(0,0,0,0.2)
   color: #795548
 
-  // ::before
-  //   content: ''
-  //   position: relative
-  //   display: inline-block
-  //   border-bottom: px solid #795548
-  //   border-radius: 0 0 40% 5% / 0 0 15% 20%
-  //   padding: 0 1em 0.1em 0.2em
-  //   font-size: 110%
-  //   font-weight: bold
-
   ::after
     content: ''
     position: absolute

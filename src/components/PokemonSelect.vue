@@ -64,10 +64,8 @@ export default class PokemonSelect extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.pokemon-select {
-  display: inline-flex;
-  .pokemon-lv-select {
-    margin-left: 20px;
-  }
-}
+.pokemon-select
+  display: inline-flex
+  .pokemon-lv-select
+    margin-left: 20px
 </style>
