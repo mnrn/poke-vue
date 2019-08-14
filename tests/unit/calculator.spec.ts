@@ -16,41 +16,41 @@ describe('Calculatorのテスト', () => {
 
   it('Lv', () => {
     for (const _lv of [1, 75, 999]) {
-      expect(Calculator.suspicion(stats, _lv, individuals, efforts, effects))
+      expect(Calculator.suspicion(_lv, individuals, efforts, effects))
         .toEqual(left('Lvは50または100である必要があります！'))
     }
   })
 
   it('個体値', () => {
     for (const _individuals of [[31, -1, 31, 31, 31, 31], [31, 31, 31, 31, 31, 32]]) {
-      expect(Calculator.suspicion(stats, lv, _individuals, efforts, effects))
+      expect(Calculator.suspicion(lv, _individuals, efforts, effects))
         .toEqual(left('個体値は0以上31以下である必要があります！'))
     }
   })
 
   it('努力値', () => {
-    expect(Calculator.suspicion(stats, lv, individuals, [0, 255, 0, 0, 0, 0], effects))
+    expect(Calculator.suspicion(lv, individuals, [0, 255, 0, 0, 0, 0], effects))
       .toEqual(left('一つの能力に割り当てられる努力値は0以上252以下である必要があります！'))
-    expect(Calculator.suspicion(stats, lv, individuals, [252, 252, 252, 252, 252, 252], effects))
+    expect(Calculator.suspicion(lv, individuals, [252, 252, 252, 252, 252, 252], effects))
       .toEqual(left('努力値は508以下である必要があります！'))
-    expect(Calculator.suspicion(stats, lv, individuals, [0, 250, 0, 0, 4, 252], effects))
+    expect(Calculator.suspicion(lv, individuals, [0, 250, 0, 0, 4, 252], effects))
       .toEqual(left('努力値は4の倍数である必要があります！'))
   })
 
   it('性格補正', () => {
-    expect(Calculator.suspicion(stats, lv, individuals, efforts, ['-', 'a', '-', '↓', '-', '↑']))
+    expect(Calculator.suspicion(lv, individuals, efforts, ['-', 'a', '-', '↓', '-', '↑']))
       .toEqual(left('性格補正の入力は"-"または"↑"または"↓"である必要があります！'))
-    expect(Calculator.suspicion(stats, lv, individuals, efforts, ['-', '↑', '-', '↓', '-', '↑']))
+    expect(Calculator.suspicion(lv, individuals, efforts, ['-', '↑', '-', '↓', '-', '↑']))
       .toEqual(left('性格補正"↑"と"↓"はたかだかひとつずつまでの必要があります！'))
   })
 
   it('エラーの際に、execがsuspicionと同じ値を返すか', () => {
     expect(Calculator.exec(stats, 1, individuals, efforts, effects))
-      .toEqual(Calculator.suspicion(stats, 1, individuals, efforts, effects))
+      .toEqual(Calculator.suspicion(1, individuals, efforts, effects))
   })
 
   it('複数のエラーが起こる際、先頭のエラーのみ先に捉えるか', () => {
-    expect(Calculator.suspicion(stats, 1, individuals, [0, 255, 0, 0, 0, 0], effects))
+    expect(Calculator.suspicion(1, individuals, [0, 255, 0, 0, 0, 0], effects))
       .toEqual(left('Lvは50または100である必要があります！'))
   })
 })

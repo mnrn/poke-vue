@@ -1,36 +1,31 @@
 import { Option, none } from 'fp-ts/lib/Option'
-import { Either, left, right, map } from 'fp-ts/lib/Either'
+import { Either, right, map, filterOrElse } from 'fp-ts/lib/Either'
 import { pipe } from 'fp-ts/lib/pipeable'
 import BaseStats from '@/static/ts/stats'
 
-export function suspicion (stats: BaseStats, lv: number, individuals: number[], efforts: number[], effects: string[]): Either<string, Option<never>> {
-  if (lv !== 50 && lv !== 100) {
-    return left('Lvは50または100である必要があります！')
-  }
-  if (individuals.some((x) => x < 0 || x > 31)) {
-    return left('個体値は0以上31以下である必要があります！')
-  }
-  if (efforts.some((x) => x > 252 || x < 0)) {
-    return left('一つの能力に割り当てられる努力値は0以上252以下である必要があります！')
-  }
-  if (efforts.reduce((acc, cur) => acc + cur) > 508) {
-    return left('努力値は508以下である必要があります！')
-  }
-  if (efforts.some((x) => x % 4 !== 0)) {
-    return left('努力値は4の倍数である必要があります！')
-  }
-  if (effects.every((x) => ['-', '↑', '↓'].find((y) => x === y)) === false) {
-    return left('性格補正の入力は"-"または"↑"または"↓"である必要があります！')
-  }
-  if (effects.filter((x) => x === '↑').length > 1 || effects.filter((x) => x === '↓').length > 1) {
-    return left('性格補正"↑"と"↓"はたかだかひとつずつまでの必要があります！')
-  }
-  return right(none)
+export function suspicion (lv: number, individuals: number[], efforts: number[], effects: string[]): Either<string, Option<never>> {
+  return pipe(
+    right(none),
+    filterOrElse(() => (lv === 50 || lv === 100),
+      () => 'Lvは50または100である必要があります！'),
+    filterOrElse(() => individuals.every((x) => x >= 0 && x <= 31),
+      () => '個体値は0以上31以下である必要があります！'),
+    filterOrElse(() => efforts.every((x) => x <= 252 && x >= 0),
+      () => '一つの能力に割り当てられる努力値は0以上252以下である必要があります！'),
+    filterOrElse(() => efforts.reduce((acc, cur) => acc + cur) <= 508,
+      () => '努力値は508以下である必要があります！'),
+    filterOrElse(() => efforts.every((x) => x % 4 === 0),
+      () => '努力値は4の倍数である必要があります！'),
+    filterOrElse(() => effects.every((x) => ['-', '↑', '↓'].find((y) => x === y)),
+      () => '性格補正の入力は"-"または"↑"または"↓"である必要があります！'),
+    filterOrElse(() => effects.filter((x) => x === '↑').length <= 1 && effects.filter((x) => x === '↓').length <= 1,
+      () => '性格補正"↑"と"↓"はたかだかひとつずつまでの必要があります！')
+  )
 }
 
 export function exec (stats: BaseStats, lv: number, individuals: number[], efforts: number[], effects: string[]): Either<string, number[]> {
   return pipe(
-    suspicion(stats, lv, individuals, efforts, effects),
+    suspicion(lv, individuals, efforts, effects),
     map(() => {
       const base = [stats['hp'], stats['attack'], stats['defence'],
         stats['spAttack'], stats['spDefence'], stats['speed']]
