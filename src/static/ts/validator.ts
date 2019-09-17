@@ -5,7 +5,7 @@ import { pipe } from 'fp-ts/lib/pipeable'
 import { sequenceT } from 'fp-ts/lib/Apply'
 
 export function check (checklist: string[], stats: number[], lv: number, individuals: number[], efforts: number[], effects: string[])
-: Either<NonEmptyArray<string>, Option<never>> {
+: Either<NonEmptyArray<string>, never[]> {
   return pipe(
     sequenceT(getValidation(getSemigroup<string>()))(
       checkLeftovers(checklist, efforts),
@@ -13,7 +13,7 @@ export function check (checklist: string[], stats: number[], lv: number, individ
       checkHP(checklist, stats[0]),
       check11n(checklist, stats, effects)
     ),
-    map(() => none)
+    map(() => [])
   )
 }
 
@@ -21,14 +21,14 @@ export function getLeftovers (efforts: number[]): number {
   return 508 - efforts.reduce((acc, cur) => acc + cur)
 }
 
-export function checkLeftovers (checklist: string[], efforts: number[]): Either<NonEmptyArray<string>, Option<never>> {
+export function checkLeftovers (checklist: string[], efforts: number[]): Either<NonEmptyArray<string>, never[]> {
   if (!checklist.includes('leftovers')) {
-    return right(none)
+    return right([])
   }
   const leftovers = getLeftovers(efforts)
   return leftovers > 0
     ? left(['残りの努力値は' + leftovers + 'です！'])
-    : right(none)
+    : right([])
 }
 
 export function isUseful (lv: number, individual: number, effort: number): boolean {
@@ -40,9 +40,9 @@ export function isUseful (lv: number, individual: number, effort: number): boole
     : effort % 8 === 0
 }
 
-export function checkUseful (checklist: string[], lv: number, individuals: number[], efforts: number[]): Either<NonEmptyArray<string>, Option<never>> {
+export function checkUseful (checklist: string[], lv: number, individuals: number[], efforts: number[]): Either<NonEmptyArray<string>, never[]> {
   if (!checklist.includes('useless')) {
-    return right(none)
+    return right([])
   }
   const list = ['HP', 'こうげき', 'ぼうぎょ', 'とくこう', 'とくぼう', 'すばやさ']
   let validation: string[] = []
@@ -54,7 +54,7 @@ export function checkUseful (checklist: string[], lv: number, individuals: numbe
   return pipe(
     validation,
     fromArray,
-    fromOption(() => none),
+    fromOption(() => []),
     swap
   )
 }
@@ -71,7 +71,7 @@ export function isHPAnPlusManyB (hp: number, a: number, bs: number[]): boolean {
   return bs.some((b) => isHPAnPlusB(hp, a, b))
 }
 
-export function checkHP (checklist: string[], hp: number): Either<NonEmptyArray<string>, Option<never>> {
+export function checkHP (checklist: string[], hp: number): Either<NonEmptyArray<string>, never[]> {
   const checkMapHP: any = {
     '2n+1': isHPAnPlusB(hp, 2, 1),
     '2n': isHPAnPlusB(hp, 2, 0),
@@ -92,7 +92,7 @@ export function checkHP (checklist: string[], hp: number): Either<NonEmptyArray<
   return pipe(
     validation,
     fromArray,
-    fromOption(() => none),
+    fromOption(() => []),
     swap
   )
 }
@@ -101,12 +101,12 @@ export function is11n (stat: number, effect: string): boolean {
   return effect === '↑' && stat % 11 === 0
 }
 
-export function check11n (checklist: string[], stats: number[], effects: string[]): Either<NonEmptyArray<string>, Option<never>> {
+export function check11n (checklist: string[], stats: number[], effects: string[]): Either<NonEmptyArray<string>, never[]> {
   if (!(checklist.includes('11n') && effects.includes('↑'))) {
-    return right(none)
+    return right([])
   }
   const index = effects.indexOf('↑')
   return is11n(stats[index], effects[index])
-    ? right(none)
+    ? right([])
     : left(['性格補正がかかった箇所が11nを満たしていません！'])
 }

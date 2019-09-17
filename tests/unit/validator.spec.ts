@@ -1,5 +1,4 @@
 import * as Validator from '@/static/ts/validator'
-import { none } from 'fp-ts/lib/Option'
 import { left, right } from 'fp-ts/lib/Either'
 
 describe('数値計算のテスト', () => {
@@ -90,12 +89,12 @@ describe('チェック関数のテスト', () => {
 
   it('空配列チェック', () => {
     expect(Validator.check([], stats, lv, individuals, efforts, effects))
-      .toEqual(right(none))
+      .toEqual(right([]))
   })
 
   it('努力値の余りチェック', () => {
     expect(Validator.checkLeftovers(['leftovers'], efforts))
-      .toEqual(right(none))
+      .toEqual(right([]))
     expect(Validator.checkLeftovers(['leftovers'], [0, 0, 0, 0, 0, 0]))
       .toEqual(left(['残りの努力値は508です！']))
     expect(Validator.checkLeftovers(['leftovers'], [0, 0, 0, 252, 0, 0]))
@@ -109,17 +108,17 @@ describe('チェック関数のテスト', () => {
 
   it('努力値の無駄チェック', () => {
     expect(Validator.checkUseful(['useless'], 50, individuals, efforts))
-      .toEqual(right(none))
+      .toEqual(right([]))
     expect(Validator.checkUseful(['useless'], 100, individuals, efforts))
-      .toEqual(right(none))
+      .toEqual(right([]))
     expect(Validator.checkUseful(['useless'], 50, [30, 31, 31, 31, 31, 31], [4, 252, 0, 0, 0, 252]))
       .toEqual(left(['HPの努力値に無駄があります！']))
     expect(Validator.checkUseful(['useless'], 100, [30, 31, 31, 31, 31, 31], [4, 252, 0, 0, 0, 252]))
-      .toEqual(right(none))
+      .toEqual(right([]))
     expect(Validator.checkUseful(['useless'], 50, [30, 30, 31, 31, 31, 31], [4, 252, 0, 0, 0, 252]))
       .toEqual(left(['HPの努力値に無駄があります！', 'こうげきの努力値に無駄があります！']))
     expect(Validator.checkUseful(['useless'], 100, [30, 30, 31, 31, 31, 31], [4, 252, 0, 0, 0, 252]))
-      .toEqual(right(none))
+      .toEqual(right([]))
 
     expect(Validator.check(['useless'], stats, 50, [30, 30, 31, 31, 31, 31], [4, 252, 0, 0, 0, 252], effects))
       .toEqual(Validator.checkUseful(['useless'], 50, [30, 30, 31, 31, 31, 31], [4, 252, 0, 0, 0, 252]))
@@ -127,7 +126,7 @@ describe('チェック関数のテスト', () => {
 
   it('An-Bチェック', () => {
     expect(Validator.checkHP(['16n-1'], 175))
-      .toEqual(right(none))
+      .toEqual(right([]))
     expect(Validator.checkHP(['16n-1'], 177))
       .toEqual(left(['HPが16n-1を満たしません！']))
 
@@ -137,7 +136,7 @@ describe('チェック関数のテスト', () => {
 
   it('An+Bチェック', () => {
     expect(Validator.checkHP(['16n+1'], 193))
-      .toEqual(right(none))
+      .toEqual(right([]))
     expect(Validator.checkHP(['16n+1'], 175))
       .toEqual(left(['HPが16n+1を満たしません！']))
 
@@ -147,7 +146,7 @@ describe('チェック関数のテスト', () => {
 
   it('An+Bsチェック', () => {
     expect(Validator.checkHP(['16n+1~3'], 195))
-      .toEqual(right(none))
+      .toEqual(right([]))
     expect(Validator.checkHP(['16n+1~3'], 197))
       .toEqual(left(['HPが16n+1~3を満たしません！']))
 
@@ -157,7 +156,7 @@ describe('チェック関数のテスト', () => {
 
   it('11nチェック', () => {
     expect(Validator.check11n(['11n'], [159, 198, 100, 100, 100, 100], effects))
-      .toEqual(right(none))
+      .toEqual(right([]))
     expect(Validator.check11n(['11n'], [159, 100, 100, 100, 100, 100], effects))
       .toEqual(left(['性格補正がかかった箇所が11nを満たしていません！']))
 
@@ -167,7 +166,7 @@ describe('チェック関数のテスト', () => {
 
   it('同時に複数チェック', () => {
     expect(Validator.check(['useless', '16n-1', '6n-1', '8n-1', '11n'], [191, 150, 150, 176, 150, 150], lv, individuals, [0, 0, 0, 252, 0, 0], ['-', '-', '-', '↑', '-', '-']))
-      .toEqual(right(none))
+      .toEqual(right([]))
     expect(Validator.check(['useless', '4n+1', '11n'], [159, 166, 150, 150, 150, 200], lv, individuals, [4, 8, 0, 0, 252, 8], ['-', '↑', '-', '↓', '-', '-']))
       .toEqual(left(['こうげきの努力値に無駄があります！', 'すばやさの努力値に無駄があります！', 'HPが4n+1を満たしません！', '性格補正がかかった箇所が11nを満たしていません！']))
     expect(Validator.check(['useless', '4n+1', '11n'], [161, 166, 150, 150, 150, 200], lv, individuals, [4, 8, 0, 0, 252, 8], ['-', '↑', '-', '↓', '-', '-']))

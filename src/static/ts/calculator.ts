@@ -3,9 +3,9 @@ import { Either, right, map, filterOrElse } from 'fp-ts/lib/Either'
 import { pipe } from 'fp-ts/lib/pipeable'
 import BaseStats from '@/static/ts/stats'
 
-export function suspicion (lv: number, individuals: number[], efforts: number[], effects: string[]): Either<string, Option<never>> {
+export function suspicion (lv: number, individuals: number[], efforts: number[], effects: string[]): Either<string, never[]> {
   return pipe(
-    right(none),
+    right([]),
     filterOrElse(() => (lv === 50 || lv === 100),
       () => 'Lvは50または100である必要があります！'),
     filterOrElse(() => individuals.every((x) => x >= 0 && x <= 31),
