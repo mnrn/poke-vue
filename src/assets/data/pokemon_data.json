@@ -16522,5 +16522,41 @@
       "spDefence": 80,
       "speed": 143
     }
+  },
+  {
+    "no": 823,
+    "name": "アーマーガア",
+    "form": "",
+    "isMegaEvolution": false,
+    "evolutions": [],
+    "types": ["ひこう", "はがね"],
+    "abilities": ["プレッシャー", "きんちょうかん"],
+    "hiddenAbilities": ["ミラーアーマー"],
+    "stats": {
+      "hp": 98,
+      "attack": 87,
+      "defence": 105,
+      "spAttack": 53,
+      "spDefence": 85,
+      "speed": 67
+    }
+  },
+  {
+    "no": 887,
+    "name": "ドラパルト",
+    "form": "",
+    "isMegaEvolution": false,
+    "evolutions": [],
+    "types": ["ドラゴン", "ゴースト"],
+    "abilities": ["クリアボディ", "すりぬけ"],
+    "hiddenAbilities": ["のろわれボディ"],
+    "stats": {
+      "hp": 88,
+      "attack": 120,
+      "defence": 75,
+      "spAttack": 100,
+      "spDefence": 75,
+      "speed": 142
+    }
   }
 ]
