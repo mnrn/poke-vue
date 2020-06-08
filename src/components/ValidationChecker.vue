@@ -1,7 +1,7 @@
 <template>
   <div class="validation-checker">
     <fieldset>
-      <legend>チェックボックスです</legend>
+      <legend>チェックボックスです。</legend>
       <div v-for="(check, index) in checklist" :key="index">
         <input type="checkbox" :id="check.id" name="check" :class="'check-'+check.id" v-model="checks[index]"/>
         <label :for="check.id" v-cloak>{{check.label}}</label>
