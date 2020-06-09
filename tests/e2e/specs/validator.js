@@ -72,21 +72,21 @@ describe('努力値の無駄をチェック', () => {
 
     cy.get('.effort-hp')
       .type('{uparrow}')
-      .blur()
+      .trigger('change')
 
     cy.get('.warning-box')
       .should('not.exist')
 
     cy.get('.effort-hp')
       .type('{uparrow}')
-      .blur()
+      .trigger('change')
 
     cy.get('.warning-box')
       .contains('HPの努力値に無駄があります！')
 
     cy.get('.effort-hp')
       .type('{uparrow}')
-      .blur()
+      .trigger('change')
 
     cy.get('.warning-box')
       .should('not.exist')
