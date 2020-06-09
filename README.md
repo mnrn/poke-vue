@@ -1,10 +1,8 @@
-# poke-vue
+# poke-vue - ポケモンステータス計算
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Language](https://img.shields.io/badge/Language-TypeScript-blue)
 <img src="https://img.shields.io/badge/-Vue.js-4FC08D.svg?logo=vue.js&style=plastic">
-
-# ポケモンステータス計算
 
 ポケモンのステータスを計算します。  
 現在、ポケモン剣盾対応中になります。  
