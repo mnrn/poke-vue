@@ -8,7 +8,11 @@
 現在、ポケモン剣盾対応中になります。  
 ポケモンのデータは[こちら](https://github.com/kotofurumiya/pokemon_data)からお借りしたものを少しいじっています。
 
-## 次のようなチェックを施すことができます
+## Demo - やってみた
+
+![Demo](https://github.com/mnrn/poke-vue/blob/master/media/poke-demo.gif)
+
+## Option - 次のようなチェックを施すことができます
 
 - 努力値の余りチェック
 - 努力値の無駄チェック
