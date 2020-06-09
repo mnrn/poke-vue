@@ -1,4 +1,3 @@
-import { Option, none } from 'fp-ts/lib/Option'
 import { getSemigroup, NonEmptyArray, fromArray } from 'fp-ts/lib/NonEmptyArray'
 import { getValidation, Either, left, right, map, fromOption, swap } from 'fp-ts/lib/Either'
 import { pipe } from 'fp-ts/lib/pipeable'

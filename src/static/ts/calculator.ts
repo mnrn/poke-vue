@@ -1,4 +1,3 @@
-import { Option, none } from 'fp-ts/lib/Option'
 import { Either, right, map, filterOrElse } from 'fp-ts/lib/Either'
 import { pipe } from 'fp-ts/lib/pipeable'
 import BaseStats from '@/static/ts/stats'
