@@ -1,8 +1,8 @@
 export default interface BaseStats {
-  hp: number
-  attack: number
-  defence: number
-  spAttack: number
-  spDefence: number
-  speed: number
+  h: number
+  a: number
+  b: number
+  c: number
+  d: number
+  s: number
 }

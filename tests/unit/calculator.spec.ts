@@ -3,7 +3,7 @@ import BaseStats from '@/static/ts/stats'
 import { left, right } from 'fp-ts/lib/Either'
 
 describe('Calculatorのテスト', () => {
-  const stats: BaseStats = { 'hp': 108, 'attack': 130, 'defence': 95, 'spAttack': 80, 'spDefence': 85, 'speed': 102 }
+  const stats: BaseStats = { 'h': 108, 'a': 130, 'b': 95, 'c': 80, 'd': 85, 's': 102 }
   const lv = 50
   const individuals = [31, 31, 31, 31, 31, 31]
   const efforts = [0, 252, 0, 0, 4, 252]

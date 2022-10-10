@@ -30,7 +30,7 @@ import { exceptShedinja } from '../static/ts/utility'
 import * as Calculator from '../static/ts/calculator'
 import * as Validator from '../static/ts/validator'
 
-import pokemonData from '@/assets/data/pokemon_data.json'
+import pokemonData from '@/assets/data/poke.json'
 import checkList from '@/assets/data/checklist.json'
 
 export type PokemonData = typeof pokemonData
@@ -62,9 +62,6 @@ export default class PokemonStats extends Vue {
 
   private created () {
     for (let p of this.pokemon) {
-      p.name = p.form === ''
-        ? p.name
-        : p.name + '(' + p.form + ')'
       this.names.push(p.name)
     }
   }

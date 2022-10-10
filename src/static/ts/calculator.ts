@@ -26,8 +26,8 @@ export function exec (stats: BaseStats, lv: number, individuals: number[], effor
   return pipe(
     suspicion(lv, individuals, efforts, effects),
     map(() => {
-      const base = [stats['hp'], stats['attack'], stats['defence'],
-        stats['spAttack'], stats['spDefence'], stats['speed']]
+      const base = [stats['h'], stats['a'], stats['b'],
+        stats['c'], stats['d'], stats['s']]
       const effect: any = { '-': 1.0, '↑': 1.1, '↓': 0.9 }
 
       let result = [0, 0, 0, 0, 0, 0]
