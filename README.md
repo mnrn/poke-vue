@@ -5,8 +5,6 @@
 ![Vue.js](https://img.shields.io/badge/-Vue.js-4FC08D.svg?logo=vue.js&style=plastic)
 
 ポケモンのステータスを計算します。  
-現在、ポケモン剣盾対応中になります。  
-ポケモンのデータは[こちら](https://github.com/kotofurumiya/pokemon_data)からお借りしたものを少しいじっています。
 
 ## Demo - やってみた
 
