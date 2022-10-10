@@ -10,7 +10,7 @@
 
 ## Demo - やってみた
 
-![Demo](https://github.com/mnrn/poke-vue/blob/master/media/poke-demo.gif)
+![Demo](https://github.com/mnrn/poke-vue/blob/main/media/poke-demo.gif)
 
 ## Option - 次のようなチェックを施すことができます
 
